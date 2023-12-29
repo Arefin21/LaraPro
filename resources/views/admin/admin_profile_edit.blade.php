@@ -18,21 +18,21 @@
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" id="name" placeholder="Name" name="name" value="{{$editData->name}}">
+                    <input name="name" class="form-control" type="text" value="{{ $editData->name }}"  id="example-text-input">
                 </div>
             </div>
             
             <div class="row mb-3">
                 <label for="example-search-input" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="email" placeholder="Email" id="email" name="email"value="{{$editData->email}}">
+                    <input name="email" class="form-control" type="text" value="{{ $editData->email }}"  id="example-text-input">
                 </div>
             </div>
             
             <div class="row mb-3">
                 <label for="example-email-input" class="col-sm-2 col-form-label">Username</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" id="username" placeholder="Username" name="username"value="{{$editData->username}}">
+                    <input name="username" class="form-control" type="text" value="{{ $editData->username }}"  id="example-text-input">
                 </div>
             </div>
 
@@ -46,7 +46,9 @@
             <div class="row mb-3">
                
                 <div class="col-sm-10">
-                    <img id="showImage" class="rounded-circle avatar-xl" src="{{asset('backend/assets/images/akram.jpg')}}" alt="Card image cap">
+                    <img id="showImage" class="rounded-circle avatar-xl" 
+        src="{{ (!empty($editData->profile_image) ? url('upload/admin_images/'.$editData->profile_image) : url('upload/no_image.jpg')) }}"
+                     alt="Card image cap">
                 </div>
             </div>
             <hr>
