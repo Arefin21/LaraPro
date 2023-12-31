@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('/dashboard', function () {
@@ -30,14 +31,19 @@ Route::middleware('auth')->group(function () {
 });
 
 //Admin all route
-
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
-    Route::get('/admin/profile', [AdminController::class, 'Profile'])->name('admin.profile');
-    Route::get('/edit/profile', [AdminController::class, 'EditProfile'])->name('edit.profile');
-    Route::post('/store/profile', [AdminController::class, 'StoreProfile'])->name('store.profile');
-    Route::get('/change/password', [AdminController::class, 'changePassword'])->name('change.password');
-    Route::post('/update/password', [AdminController::class, 'updatePassword'])->name('update.password');
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin/logout', 'destroy')->name('admin.logout');
+    Route::get('/admin/profile', 'Profile')->name('admin.profile');
+    Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+    Route::post('/store/profile', 'StoreProfile')->name('store.profile');
+    Route::get('/change/password', 'changePassword')->name('change.password');
+    Route::post('/update/password', 'updatePassword')->name('update.password');
+});
+});
+
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/home/slide', 'homeSlide')->name('home.slide');
 });
 
 require __DIR__ . '/auth.php';
