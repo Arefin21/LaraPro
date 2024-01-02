@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/update/slider', 'updateSlider')->name('update.slider');
 });
 
+//About all route
 Route::controller(AboutController::class)->group(function () {
     Route::get('/about/page', 'aboutPage')->name('about.page');
     Route::post('/update/about', 'updateAbout')->name('update.about');
@@ -61,6 +63,12 @@ Route::controller(AboutController::class)->group(function () {
     Route::post('/update/multi/image', 'UpdateMultiImage')->name('update.multi.image');
 
     Route::get('/delete/multi/image{id}', 'DeleteMultiImage')->name('delete.multi.image');
+
+});
+
+// Portfolio All Route
+Route::controller(PortfolioController::class)->group(function () {
+    Route::get('/all/portfolio', 'AllPortfolio')->name('all.portfolio');
 
 });
 
