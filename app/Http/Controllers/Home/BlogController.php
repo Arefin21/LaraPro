@@ -120,4 +120,25 @@ class BlogController extends Controller {
         return redirect()->back()->with($notification);
     }
 
+    public function BlogDetails($id) {
+        $categories = BlogCategory::orderBy('blog_category', 'ASC')->get();
+        $allblogs = Blog::latest()->limit(3)->get();
+        $blogs = Blog::findOrFail($id);
+        return view('frontend.blog_details', compact('blogs', 'allblogs', 'categories'));
+    }
+
+    public function CategoryPost($id) {
+        $categories = BlogCategory::orderBy('blog_category', 'ASC')->get();
+        $allblogs = Blog::latest()->limit(3)->get();
+        $blogPost = Blog::where('blog_category_id', $id)->orderBy('id', 'DESC')->get();
+        $categoryName = BlogCategory::findOrFail($id);
+        return view('frontend.cat_blog_details', compact('blogPost', 'allblogs', 'categories', 'categoryName'));
+    }
+
+    public function HomeBlog() {
+        $categories = BlogCategory::orderBy('blog_category', 'ASC')->get();
+        $allblogs = Blog::latest()->get();
+        return view('frontend.blog', compact('allblogs','categories'));
+    }
+
 }
