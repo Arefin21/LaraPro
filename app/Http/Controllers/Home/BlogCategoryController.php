@@ -20,11 +20,12 @@ class BlogCategoryController extends Controller {
 
     public function StoreBlogCategory(Request $request) {
 
-        $request->validate([
-            'blog_category' => 'required',
-        ], [
-            'blog_category.required' => 'Blog Category Name is required',
-        ]);
+        // $request->validate([
+        //     'blog_category' => 'required',
+        // ], [
+        //     'blog_category.required' => 'Blog Category Name is required',
+        // ]);
+
         BlogCategory::create([
             'blog_category' => $request->input('blog_category'),
         ]);
@@ -42,12 +43,15 @@ class BlogCategoryController extends Controller {
     }
 
     public function UpdateBlogCategory(Request $request) {
+
         $blogcategory_id = $request->id;
-        $request->validate([
-            'blog_category' => 'required',
-        ], [
-            'blog_category.required' => 'Blog Category Name is required',
-        ]);
+
+        // $request->validate([
+        //     'blog_category' => 'required',
+        // ], [
+        //     'blog_category.required' => 'Blog Category Name is required',
+        // ]);
+
         BlogCategory::findOrFail($blogcategory_id)->update([
             'blog_category' => $request->input('blog_category'),
         ]);
