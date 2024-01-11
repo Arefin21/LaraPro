@@ -1,6 +1,10 @@
 @extends('frontend.main_master')
 @section('main')
 
+@section('title')
+About|Portfolio
+@endsection
+
 <main>
 
     <!-- breadcrumb-area -->

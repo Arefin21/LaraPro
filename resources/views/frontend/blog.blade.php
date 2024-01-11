@@ -1,6 +1,10 @@
 @extends('frontend.main_master')
 @section('main')
 
+@section('title')
+Blog|Portfolio
+@endsection
+
 <section class="breadcrumb__wrap">
     <div class="container custom-container">
         <div class="row justify-content-center">
